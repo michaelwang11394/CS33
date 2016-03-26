@@ -1,0 +1,11 @@
+1) with -02
+
+In the assembly code, I saw neither mov nor lea instructions to add 1 to big. Without fwrap semantics, the compiler executed undefined behavior from signed overflow where anything could happen. 
+
+2) with -O2 -fsanitize=undefined
+
+This will not work because it requires a dynamically linked library. Inlining optimization is also prevented by the compiler. As a result, the code may never actually call the testovf function.  -fno-inline will ensure that testovf is actually called. 
+
+3)with -O2 -fwrapv
+
+Similar to what I stated above, however a difference that I think exists is that leal is used to add upon returning to 1 due to sign overflowed. 

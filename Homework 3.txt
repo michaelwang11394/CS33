@@ -1,0 +1,32 @@
+Michael Wang
+
+2nd Edition
+
+3.64)
+
+A) 1: 8(%ebp) contains str2
+   2: 12(%ebp) contains s1 integer a
+   3: 16(%ebp) contains pointer p
+
+B) In the first slot, we move y pointer in %edx. The third slot moves x into %eax. Second slot holds location of initialized strl. 4th one holds s1. 5th one also holds s1
+
+C) The values are stored next to each in the registers but their memory space is given to %esp.
+
+D) This function returns the individual values in order of the stack pointer
+
+
+3.67)
+
+A) 
+e1.p: 0
+e1.y: 4
+e2.x: 0
+e2.next: 4
+
+B) 8 bytes
+
+C)
+void proc (union ele *up)
+{
+	up-> e2.next->e1.p = *(up->e2.next->e1.p) - up -> e1/p;
+}

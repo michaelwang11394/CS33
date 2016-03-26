@@ -1,0 +1,28 @@
+1)Explain why the instructions in the trace did not produce the correct mathematical result. Which instructions caused the problem, exactly?
+
+Continuously multiplying leads to a signed overflow
+
+2)Explain why the shell command emacs -batch -eval '(print most-positive-fixnum)' outputs 2305843009213693951.
+ Where did the number 2305843009213693951 come from? Explain in terms of the Emacs source code.
+
+ It is the maximum value that the lisp can hold.The value is equal to the maximum value of a long 
+
+3)Explain why the shell command emacs -batch -eval '(print (* most-positive-fixnum most-positive-fixnum))' outputs only 1.
+
+1 is printed because we are still running the command under a bool, which returns true
+
+4)The Emacs executable was compiled with GCC's -O2 option. Suppose it had also been compiled with -fsanitize=undefined. Explain any problems the trace would run into, or if there would not be a problem explain why not.
+
+It will give us a run time error
+
+
+5)Similarly, discuss whether and how -fwrapv would have caused problems.
+The trace would eventually run into an interger overflow issues
+
+
+6)Suppose we assume -fwrapv is used. Suggest changes to how Emacs does integer multiplication that should help improve its performance. Focus on integer multiplication; don't alter the machinery Emacs uses to decide which flavor of multiplication to do.
+
+We can possibly change the loop that is in the emacs so that we are not continuously multipying. A flag could also help in this regard. 
+
+7)How significant are the efficiency differences discussed above, in the context of Emacs execution?
+For this project, the differences are important because they lead to cleaner and more efficient code. 
